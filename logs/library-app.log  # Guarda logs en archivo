@@ -1,0 +1,27 @@
+2025-04-05T16:33:59.493-04:00 ERROR 3160 --- [library-hexagonal] [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Failed to bind properties under 'logging.level.com.library' to org.springframework.boot.logging.LogLevel:
+
+    Property: logging.level.com.library
+    Value: "DEBUG  # Nivel detallado para tu paquete"
+    Origin: class path resource [application.properties] - 14:27
+    Reason: failed to convert java.lang.String to org.springframework.boot.logging.LogLevel (caused by java.lang.IllegalArgumentException: No enum constant org.springframework.boot.logging.LogLevel.DEBUG  # Nivel detallado para tu paquete)
+
+Action:
+
+Update your application's configuration. The following values are valid:
+
+    DEBUG
+    ERROR
+    FATAL
+    INFO
+    OFF
+    TRACE
+    WARN
+
