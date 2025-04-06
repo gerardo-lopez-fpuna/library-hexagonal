@@ -1,7 +1,7 @@
 package com.library.infrastructure.adapter.input.rest;
 
 import com.library.application.port.input.RegisterMemberUseCase;
-import com.library.domain.model.Member;
+import com.library.domain.model.LibraryMember;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,8 +16,8 @@ public class MemberController {
     }
 
     @PostMapping
-    public ResponseEntity<Member> registerMember(@RequestBody Member member) {
-        Member registeredMember = registerMemberUseCase.registerMember(member);
+    public ResponseEntity<LibraryMember> registerMember(@RequestBody LibraryMember member) {
+        LibraryMember registeredMember = registerMemberUseCase.registerMember(member);
         return ResponseEntity.ok(registeredMember);
     }
 }

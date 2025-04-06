@@ -20,7 +20,7 @@ public class BookJpaRepository implements BookRepository {
 
     @Override
     public Optional<Book> findByIsbn(ISBN isbn) {
-        return repository.findById(isbn.getValue())
+        return repository.findById(isbn.value())
                 .map(this::toDomain);
     }
 
@@ -40,7 +40,7 @@ public class BookJpaRepository implements BookRepository {
 
     private BookEntity toEntity(Book book) {
         return new BookEntity(
-                book.getIsbn().getValue(),
+                book.getIsbn().value(),
                 book.getTitle(),
                 book.getAuthor(),
                 book.getAvailableCopies()

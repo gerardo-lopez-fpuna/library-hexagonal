@@ -2,8 +2,8 @@ package com.library.infrastructure.adapter.input.rest;
 
 import com.library.application.port.input.BorrowBookUseCase;
 import com.library.application.port.input.ReturnBookUseCase;
-import com.library.domain.model.Book;
-import org.hibernate.validator.constraints.ISBN;
+import com.library.domain.valueobject.ISBN;
+import com.library.domain.valueobject.MemberId;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
