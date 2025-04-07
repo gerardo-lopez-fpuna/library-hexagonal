@@ -50,13 +50,18 @@ library-hexagonal/
 ```
 ## 🚀 Endpoints Principales (API REST)
 
+## 🚀 Endpoints Principales (API REST)
+
 | Método | Endpoint                  | Descripción                |
 |--------|---------------------------|----------------------------|
+| POST   | /api/books                | Crear un libro             |
+| GET    | /api/books/{isbn}         | Obtener un libro por ISBN  |
+| GET    | /api/books                | Listar todos los libros    |
+| PUT    | /api/books/{isbn}         | Actualizar un libro        |
+| DELETE | /api/books/{isbn}         | Borrar un libro            |
 | POST   | /api/books/{isbn}/borrow  | Prestar un libro           |
 | POST   | /api/books/{isbn}/return  | Devolver un libro          |
 | POST   | /api/members              | Registrar nuevo miembro    |
-| GET    | /api/books                | Listar todos los libros    |
-| GET    | /api/members/{id}         | Obtener información de miembro |
 
 ## 📊 Base de Datos H2 (Desarrollo)
 

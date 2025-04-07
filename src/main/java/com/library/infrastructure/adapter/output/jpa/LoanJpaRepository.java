@@ -29,11 +29,12 @@ public class LoanJpaRepository implements LoanRepository {
     }
 
     private LoanEntity toEntity(Loan loan) {
-        return new LoanEntity(
-                loan.getBook().getIsbn().value(),
-                loan.getMember().getMemberId().value(),
-                loan.getLoanDate().date(),
-                loan.getReturnDate() != null ? loan.getReturnDate().date() : null
-        );
+        return LoanEntity.builder()
+                .bookIsbn(loan.getBook().getIsbn().value())
+                .memberId(loan.getMember().getMemberId().value())
+                .loanDate(loan.getLoanDate().date())
+                .returnDate(loan.getReturnDate() != null ? loan.getReturnDate().date() : null)
+                .build();
     }
+
 }

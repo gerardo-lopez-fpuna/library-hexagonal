@@ -56,8 +56,5 @@ public class BorrowBookService implements BorrowBookUseCase {
         return false;
     }
 
-    public interface LoanRepository {
-        void save(Loan loan);
-        Optional<Loan> findActiveLoanByIsbn(ISBN isbn); // Añade este método
-    }
+
 }

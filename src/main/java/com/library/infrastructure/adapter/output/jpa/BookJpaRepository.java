@@ -7,7 +7,9 @@ import com.library.infrastructure.adapter.output.jpa.entity.BookEntity;
 import com.library.infrastructure.adapter.output.jpa.repository.SpringDataBookRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Repository
 public class BookJpaRepository implements BookRepository {
@@ -19,14 +21,34 @@ public class BookJpaRepository implements BookRepository {
     }
 
     @Override
+    public Book save(Book book) {
+        BookEntity savedEntity = repository.save(toEntity(book));
+        return toDomain(savedEntity);
+    }
+
+    @Override
     public Optional<Book> findByIsbn(ISBN isbn) {
         return repository.findById(isbn.value())
                 .map(this::toDomain);
     }
 
+
+
     @Override
-    public void save(Book book) {
-        repository.save(toEntity(book));
+    public List<Book> findAll() {
+        return repository.findAll().stream()
+                .map(this::toDomain)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public void delete(Book book) {
+        repository.delete(toEntity(book));
+    }
+
+    @Override
+    public boolean existsByIsbn(ISBN isbn) {
+        return repository.existsById(isbn.value());
     }
 
     private Book toDomain(BookEntity entity) {
