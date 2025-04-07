@@ -1,7 +1,7 @@
-📚 Library Management System - Hexagonal Architecture
-Aplicación backend para gestión de biblioteca implementando Arquitectura Hexagonal (Ports & Adapters) con Spring Boot 3 y Java 21.
+# 📚 Library Management System - Hexagonal Architecture
+ Aplicación backend para gestión de biblioteca implementando Arquitectura Hexagonal (Ports & Adapters) con Spring Boot 3 y Java 21.
 
-🌐 Tecnologías Principales
+## 🌐 Tecnologías Principales
 Java 21 (Corretto)
 
 Spring Boot 3.4.4
@@ -16,7 +16,7 @@ SpringDoc OpenAPI (Documentación API)
 
 Maven
 
-🏗️ Estructura del Proyecto
+## 🏗️ Estructura del Proyecto
 ```bash
 library-hexagonal/
 ├── src/
@@ -48,7 +48,7 @@ library-hexagonal/
 └── README.md                               # Este archivo
 
 ```
-🚀 Endpoints Principales (API REST)
+## 🚀 Endpoints Principales (API REST)
 
 | Método | Endpoint                  | Descripción                |
 |--------|---------------------------|----------------------------|
@@ -58,7 +58,7 @@ library-hexagonal/
 | GET    | /api/books                | Listar todos los libros    |
 | GET    | /api/members/{id}         | Obtener información de miembro |
 
-📊 Base de Datos H2 (Desarrollo)
+## 📊 Base de Datos H2 (Desarrollo)
 
 URL Consola: http://localhost:8080/h2-console
 
@@ -68,9 +68,9 @@ Usuario: sa
 
 Contraseña: (vacía)
 
-📝 Diagrama de Arquitectura
+## 📝 Diagrama de Arquitectura
 
-```mermaid
+```
         +-------------------+
         |   API Consumers   |
         |  (Web, Mobile, CLI)
