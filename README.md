@@ -1,94 +1,103 @@
----
+📚 Library Management System - Hexagonal Architecture
+Aplicación backend para gestión de biblioteca implementando Arquitectura Hexagonal (Ports & Adapters) con Spring Boot 3 y Java 21.
 
-```markdown
-# Library Hexagonal Architecture
+🌐 Tecnologías Principales
+Java 21 (Corretto)
 
-A Java + Spring Boot project implementing a **Library Management System** using the principles of **Hexagonal Architecture (Ports & Adapters)**.
+Spring Boot 3.4.4
 
----
+Spring Data JPA (Hibernate 6)
 
-## 📁 Project Modules
+H2 Database (en memoria)
 
-This project is structured around 4 main modules:
+Lombok
 
-```
+SpringDoc OpenAPI (Documentación API)
+
+Maven
+
+🏗️ Estructura del Proyecto
+```bash
 library-hexagonal/
-├── domain/           # Business model (entities, value objects, specifications, services)
-├── application/      # Use cases and input/output ports
-├── framework/        # Input/Output adapters (REST, JPA, CLI, etc.)
-└── bootstrap/        # Main application entry point and wiring configuration
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   │   └── com/
+│   │   │       └── library/
+│   │   │           ├── domain/               # Capa de Dominio
+│   │   │           │   ├── model/            # Entidades
+│   │   │           │   ├── valueobject/      # Objetos de Valor
+│   │   │           │   └── spec/            # Especificaciones
+│   │   │           ├── application/          # Capa de Aplicación
+│   │   │           │   ├── port/
+│   │   │           │   │   ├── input/       # Puertos de Entrada (Casos de Uso)
+│   │   │           │   │   └── output/      # Puertos de Salida (Repositorios)
+│   │   │           │   └── service/         # Servicios de Aplicación
+│   │   │           └── infrastructure/      # Capa de Infraestructura
+│   │   │               ├── adapter/
+│   │   │               │   ├── input/       # Adaptadores de Entrada (Controllers)
+│   │   │               │   └── output/      # Adaptadores de Salida (Repositorios JPA)
+│   │   │               └── config/          # Configuraciones
+│   │   └── resources/
+│   │       ├── application.properties       # Configuración
+│   │       ├── schema.sql                  # Esquema SQL inicial
+│   │       └── static/
+│   └── test/                               # Pruebas
+├── target/
+├── pom.xml                                 # Configuración Maven
+└── README.md                               # Este archivo
+
 ```
+🚀 Endpoints Principales (API REST)
 
+| Método | Endpoint                  | Descripción                |
+|--------|---------------------------|----------------------------|
+| POST   | /api/books/{isbn}/borrow  | Prestar un libro           |
+| POST   | /api/books/{isbn}/return  | Devolver un libro          |
+| POST   | /api/members              | Registrar nuevo miembro    |
+| GET    | /api/books                | Listar todos los libros    |
+| GET    | /api/members/{id}         | Obtener información de miembro |
 
-## ⚙️ Technologies
+📊 Base de Datos H2 (Desarrollo)
 
-- Java 17+
-- Spring Boot 3.x
-- Maven
-- JPA / Hibernate
-- PostgreSQL
-- Lombok
+URL Consola: http://localhost:8080/h2-console
 
----
+JDBC URL: jdbc:h2:mem:librarydb
 
-## 🔍 Module Overview
+Usuario: sa
 
-### `domain`
-Contains the **core business logic**:
-- `entity/`: Domain entities like `Book` and `User`
-- `vo/`: Value Objects (e.g., `ISBN`, `BookStatus`)
-- `specification/`: Business rules
-- `service/`: Domain services (e.g., `LoanService`)
+Contraseña: (vacía)
 
-### `application`
-Defines **what the system does**:
-- `usecase/`: Interfaces for application use cases (e.g., `BookManagementUseCase`)
-- `port/input/`: Input ports for driving the use cases
-- `port/output/`: Output ports needed to interact with the world (e.g., data storage)
+📝 Diagrama de Arquitectura
 
-### `framework`
-Implements **adapters for technologies**:
-- `adapter/input/`: REST controllers, CLI adapters, etc.
-- `adapter/output/`: Persistence adapters (e.g., JPA repositories)
-- `mapper/`: Mappers between domain and persistence/DTO models
-
-### `bootstrap`
-- Contains the `Main.java` class (entry point)
-- Initializes Spring context and wires up adapters/ports
-
----
-
-## 🚀 How to Run
-
-```bash
-# 1. Clone the repository
-git clone https://github.com/your-username/library-hexagonal.git
-
-# 2. Navigate into the project directory
-cd library-hexagonal
-
-# 3. Run the application
-./mvnw spring-boot:run
+```mermaid
+        +-------------------+
+        |   API Consumers   |
+        |  (Web, Mobile, CLI)
+        +---------+---------+
+                  |
+        [HTTP/JSON]
+                  |
+        +---------v---------+
+        |   Infrastructure  |
+        |  (Controllers,    |
+        |   Repositories)   |
+        +---------+---------+
+                  |
+        [Port Interfaces]
+                  |
+        +---------v---------+
+        |    Application    |
+        |  (Use Cases,      |
+        |   Services)       |
+        +---------+---------+
+                  |
+        [Domain Model]
+                  |
+        +---------v---------+
+        |      Domain       |
+        |  (Entities,       |
+        |   Value Objects)  |
+        +-------------------+
 ```
-
----
-
-## 🧪 Testing
-
-```bash
-./mvnw test
-```
-
----
-
-## 📌 Notes
-
-- `Book` and `User` entities are stored in **separate databases**, following DDD bounded contexts.
-- This project is **technology-agnostic** at its core. You can change the output adapters (e.g., swap JPA for MongoDB) without touching the domain or application layers.
-
----
-
-## 📄 License
-
-MIT
 
